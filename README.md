@@ -35,7 +35,7 @@ Total RAM: 11 GB, so a host with 16 GB or more is recommended.
 ## Usage
 
 ```bash
-git clone https://github.com/EmadGirgisSamaan/vprofile-vagrant.git](https://github.com/EmadGirgisSamaan/Building-a-Multi-Tier-Java-Web-Application-On-Premises.git
+git clone https://github.com/EmadGirgisSamaan/Building-a-Multi-Tier-Java-Web-Application-On-Premises.git
 cd Building-a-Multi-Tier-Java-Web-Application-On-Premises
 vagrant up            # or one at a time: db01, mc01, rmq01, app01, web01
 ```
