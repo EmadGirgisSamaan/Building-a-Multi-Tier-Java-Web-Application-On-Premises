@@ -1,6 +1,6 @@
 #!/bin/bash
 # db01 - MariaDB (CentOS Stream 9)
-# Vagrant shell provisioner بيشغّل السكريبت كـ root، فمفيش حاجة لـ sudo
+# Vagrant shell provisioner
 
 DATABASE_PASS='admin123'
 
@@ -10,7 +10,7 @@ dnf install git mariadb-server -y
 
 systemctl enable --now mariadb
 
-# بديل mysql_secure_installation (غير تفاعلي)
+#  mysql_secure_installation 
 mysql -u root <<EOF
 ALTER USER 'root'@'localhost' IDENTIFIED BY '${DATABASE_PASS}';
 DELETE FROM mysql.user WHERE User='';
@@ -20,7 +20,7 @@ GRANT ALL PRIVILEGES ON accounts.* TO 'admin'@'%' IDENTIFIED BY '${DATABASE_PASS
 FLUSH PRIVILEGES;
 EOF
 
-# تحميل الكود واستيراد بيانات القاعدة
+# import data to database
 cd /tmp
 rm -rf vprofile-project
 git clone -b main https://github.com/hkhcoder/vprofile-project.git
@@ -28,7 +28,7 @@ mysql -u root -p"${DATABASE_PASS}" accounts < vprofile-project/src/main/resource
 
 systemctl restart mariadb
 
-# الفايروول
+# firewall
 systemctl enable --now firewalld
 firewall-cmd --zone=public --add-port=3306/tcp --permanent
 firewall-cmd --reload
