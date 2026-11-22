@@ -10,16 +10,16 @@ dnf --enablerepo=centos-rabbitmq-38 -y install rabbitmq-server
 
 systemctl enable --now rabbitmq-server
 
-# السماح للمستخدم بالدخول من خارج الجهاز
+# Allowing the user to log in from outside the device
 echo "[{rabbit, [{loopback_users, []}]}]." > /etc/rabbitmq/rabbitmq.config
 
-# إنشاء المستخدم test وجعله administrator
+# Create the user test and make him administrator
 rabbitmqctl add_user test test
 rabbitmqctl set_user_tags test administrator
 
 systemctl restart rabbitmq-server
 
-# الفايروول
+# Firewall
 systemctl enable --now firewalld
 firewall-cmd --add-port=5672/tcp --permanent
 firewall-cmd --reload
