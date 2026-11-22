@@ -18,7 +18,7 @@ Browser -> web01 (Nginx :80) -> app01 (Tomcat :8080) -> db01 (MariaDB :3306)
 
 | VM    | Role                    | IP            | RAM  | OS                  | Script        |
 |-------|-------------------------|---------------|------|---------------------|---------------|
-| db01  | MariaDB                 | 192.168.56.15 | 2 GB | CentOS Stream 9     | `mysql.sh`    |
+| db01  | MariaDB                 | 192.168.56.15 | 2 GB | CentOS Stream 9     | `db.sh`    |
 | mc01  | Memcached               | 192.168.56.14 | 1 GB | CentOS Stream 9     | `memcache.sh` |
 | rmq01 | RabbitMQ                | 192.168.56.13 | 1 GB | CentOS Stream 9     | `rabbitmq.sh` |
 | app01 | Tomcat 9 + Java 11      | 192.168.56.12 | 6 GB | CentOS Stream 9     | `tomcat.sh`   |
@@ -56,9 +56,9 @@ vagrant destroy -f          # remove everything
 
 ## Verify
 
-| VM    | Check (inside `vagrant ssh <vm>`)                      | Expected              |
+| VM    | Check (inside `vagrant ssh <vm>`)                       | Expected              |
 |-------|---------------------------------------------------------|-----------------------|
-| db01  | `mysql -u admin -padmin123 accounts -e "show tables;"`  | application tables    |
+| db01  | `db -u admin -padmin123 accounts -e "show tables;"`     | application tables    |
 | mc01  | `systemctl status memcached`                            | active (running)      |
 | rmq01 | `systemctl status rabbitmq-server`                      | active (running)      |
 | app01 | `curl -I http://localhost:8080`                         | 302 -> `/login`       |
