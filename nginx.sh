@@ -3,7 +3,7 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
-# ضمان تعرّف الأسماء حتى لو hostmanager لسه ما حدّثش /etc/hosts
+# Ensuring name recognition even if hostmanager hasn't updated /etc/hosts yet
 add_host() { grep -qw "$2" /etc/hosts || echo "$1 $2" >> /etc/hosts; }
 add_host 192.168.56.15 db01
 add_host 192.168.56.14 mc01
@@ -27,7 +27,7 @@ server {
 }
 EOF
 
-# إزالة الإعداد الافتراضي وتفعيل الموقع (لازم مسار كامل في ln)
+# Remove the default setting and activate the site (full path required in ln)
 rm -f /etc/nginx/sites-enabled/default
 ln -sf /etc/nginx/sites-available/vproapp /etc/nginx/sites-enabled/vproapp
 
