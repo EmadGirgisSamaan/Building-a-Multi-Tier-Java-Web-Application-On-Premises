@@ -1,4 +1,4 @@
-# تثبيت البلجنز المطلوبة تلقائيًا لو ناقصة، ثم إعادة تشغيل نفس الأمر
+# Automatically install required plugins if missing, then re-run the same command
 required_plugins = %w(vagrant-hostmanager)
 missing_plugins = required_plugins.reject { |p| Vagrant.has_plugin?(p) }
 unless missing_plugins.empty?
