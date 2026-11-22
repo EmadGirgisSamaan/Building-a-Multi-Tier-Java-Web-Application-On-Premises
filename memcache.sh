@@ -5,7 +5,7 @@ dnf update -y
 dnf install epel-release -y
 dnf install memcached -y
 
-# السماح بالاتصال من خارج الجهاز بدل localhost فقط
+# It caused the connection to originate from outside the device instead of just localhost
 sed -i 's/127.0.0.1/0.0.0.0/g' /etc/sysconfig/memcached
 
 systemctl enable --now memcached
