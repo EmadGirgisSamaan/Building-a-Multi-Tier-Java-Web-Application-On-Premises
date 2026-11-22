@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
     db01.vm.provider "virtualbox" do |vb|
       vb.memory = "2048"
     end
-    db01.vm.provision "shell", path: "mysql.sh"
+    db01.vm.provision "shell", path: "db.sh"
   end
 
 ### Memcache vm  ####
